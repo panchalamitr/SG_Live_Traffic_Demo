@@ -12,7 +12,7 @@ class FakeTrafficImagesRepository : TrafficImageRepository {
 
     private lateinit var networkResponse : NetworkResponse<TrafficData, ErrorTrafficImages>
 
-    fun networkErrorType(_networkResponse: NetworkResponse<TrafficData, ErrorTrafficImages>) {
+    fun networkType(_networkResponse: NetworkResponse<TrafficData, ErrorTrafficImages>) {
         networkResponse = _networkResponse
     }
 

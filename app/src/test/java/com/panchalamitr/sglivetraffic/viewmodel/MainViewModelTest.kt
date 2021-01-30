@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.*
 import com.google.common.truth.Truth.assertThat
 import com.haroldadmin.cnradapter.NetworkResponse
+import com.panchalamitr.sglivetraffic.model.ErrorTrafficImages
 import com.panchalamitr.sglivetraffic.model.TrafficData
 import com.panchalamitr.sglivetraffic.repository.FakeTrafficImagesRepository
 import com.panchalamitr.sglivetraffic.utils.MainCoroutineRule
@@ -12,18 +13,16 @@ import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.test.runBlockingTest
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
+import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest  {
-
-    private val mockWebServer = MockWebServer()
 
     /**
      * Set the main coroutines dispatcher for unit testing.
@@ -41,25 +40,29 @@ class MainViewModelTest  {
     @MockK
     lateinit var mainViewModel: MainViewModel
 
+    private lateinit var savedStateHandle : SavedStateHandle
+
+    private lateinit var trafficImagesRepository: FakeTrafficImagesRepository
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        mockWebServer.start()
+
+        savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
+
+        trafficImagesRepository = FakeTrafficImagesRepository()
     }
 
     @After
     fun tearDown() {
-        mockWebServer.shutdown()
     }
 
     @Test
     fun testIsResultSuccess() {
         runBlockingTest {
-            var trafficImagesRepository = FakeTrafficImagesRepository()
 
-            trafficImagesRepository.networkErrorType()
-            val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
+            val networkResponse = NetworkResponse.Success(TrafficData(), null, 101)
+            trafficImagesRepository.networkType(networkResponse)
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeTrafficCameras().getOrAwaitValueTest()
@@ -68,11 +71,34 @@ class MainViewModelTest  {
     }
 
     @Test
-    fun testIsResultFail() {
+    fun testIsServerError() {
         runBlockingTest {
-            var trafficImagesRepository = FakeTrafficImagesRepository()
-            trafficImagesRepository.networkErrorType(true)
-            val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
+            val networkResponse = NetworkResponse.ServerError(ErrorTrafficImages(""), 101, null)
+            trafficImagesRepository.networkType(networkResponse)
+            mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
+            mainViewModel.fetchTrafficData()
+            val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()
+            assertThat(result.contains("error"))
+        }
+    }
+
+    @Test
+    fun testIsNetworkError() {
+        runBlockingTest {
+            val networkResponse = NetworkResponse.NetworkError(IOException(""))
+            trafficImagesRepository.networkType(networkResponse)
+            mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
+            mainViewModel.fetchTrafficData()
+            val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()
+            assertThat(result.contains("error"))
+        }
+    }
+
+    @Test
+    fun testIsUnknownError() {
+        runBlockingTest {
+            val networkResponse = NetworkResponse.UnknownError(IOException(""))
+            trafficImagesRepository.networkType(networkResponse)
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()

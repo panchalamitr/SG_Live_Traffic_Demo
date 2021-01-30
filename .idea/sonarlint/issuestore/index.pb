@@ -11,8 +11,6 @@ P
 Sapp/src/main/java/com/panchalamitr/sglivetraffic/adapter/CustomInfoWindowAdapter.kt,f\7\f76f9d21cf1ed1d317aa42f93a8713849607c4a6
 u
 Eapp/src/main/java/com/panchalamitr/sglivetraffic/view/MapsActivity.kt,a\5\a5ea4d5f01a70ac1b24d7b58b2fe6e5fcc1d2f1b
-‡
-Wapp/src/main/java/com/panchalamitr/sglivetraffic/respository/TrafficImagesRepository.kt,2\d\2d4c72382baeb832b7280c7d9240df5dd99c5974
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 
