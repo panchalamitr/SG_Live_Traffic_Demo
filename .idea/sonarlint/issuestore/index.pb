@@ -17,8 +17,6 @@ Eapp/src/main/java/com/panchalamitr/sglivetraffic/view/MapsActivity.kt,a\5\a5ea
 Oapp/src/test/java/com/panchalamitr/sglivetraffic/viewmodel/MainViewModelTest.kt,3\4\34e5668b518cb0a7d5c8d3616966a68241625786
 {
 Kapp/src/main/java/com/panchalamitr/sglivetraffic/viewmodel/MainViewModel.kt,7\a\7af80b64fa5094b07ca743c904365716a7305b22
-
-Oapp/src/test/java/com/panchalamitr/sglivetraffic/viewmodel/TestCoroutineRule.kt,4\a\4a353a6577d52a553fd090a807a090fcb93ceebc
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 T
@@ -31,3 +29,19 @@ s
 Capp/src/main/java/com/panchalamitr/sglivetraffic/model/ApiInfo.java,9\5\95557ce193917d74273f13132e27ec2702a1641e
 r
 Bapp/src/main/java/com/panchalamitr/sglivetraffic/model/Camera.java,6\4\642a47765fe8f46e01e5869b6d0b0e17979b7ab7
+s
+Capp/src/test/java/com/panchalamitr/sglivetraffic/utils/FileUtils.kt,e\8\e84ad4c91b226625d09b4bb1239249ba7bec75ec
+Ž
+^app/src/main/java/com/panchalamitr/sglivetraffic/respository/DefaultTrafficImagesRepository.kt,7\0\7064d2274c834ceb9ce6102a472d76677def0059
+w
+Gapp/src/main/java/com/panchalamitr/sglivetraffic/di/RepositoryModule.kt,2\b\2b44977bbe133ff4c4bcf5f6abb7a4b9273580b7
+†
+Vapp/src/main/java/com/panchalamitr/sglivetraffic/respository/TrafficImageRepository.kt,9\d\9d68c7dc86e7ae0f02a9b50b981b9c1218dbcdb4
+{
+Kapp/src/test/java/com/panchalamitr/sglivetraffic/utils/MainCoroutineRule.kt,1\9\192bd67f141003323dee37271fdfa48457c0cbdf
+z
+Japp/src/test/java/com/panchalamitr/sglivetraffic/utils/LiveDataUtilTest.kt,6\b\6b177b1c56f2878cc8efe0abdca20040bc4b20f4
+Š
+Zapp/src/test/java/com/panchalamitr/sglivetraffic/repository/FakeTrafficImagesRepository.kt,a\3\a3696d4021f61f56d1b06b72b9bb1e674ba287d4
+{
+Kapp/src/androidTest/java/com/panchalamitr/sglivetraffic/MapsActivityTest.kt,b\1\b1d82ec2b7dcc4dc3569a0d64607003764dbb10d

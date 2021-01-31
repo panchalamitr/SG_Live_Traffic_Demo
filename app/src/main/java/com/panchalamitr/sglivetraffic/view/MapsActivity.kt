@@ -92,7 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun showSyncStarMessage(){
-        Snackbar.make(activityMapBinding.root, "Live images are updating...", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(activityMapBinding.root, getString(R.string.snackbar_msg), Snackbar.LENGTH_LONG).show()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
