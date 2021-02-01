@@ -17,25 +17,19 @@ I have used following tools
 
 -------------------------
 **Video Link**
-[![Everything Is AWESOME](https://github.com/panchalamitr/NewsApp/blob/main/screenshot/Youtube.png)](https://youtu.be/au13nsR-yiQ "Everything Is AWESOME")
+[![Everything Is AWESOME](https://github.com/panchalamitr/SG_Live_Traffic_Demo/blob/main/screenshots/YoutubeScreen.png)](https://youtu.be/au13nsR-yiQ "Everything Is AWESOME")
 
 -------------------------
 
 **Screenshots**
-![News App Screenshot](https://github.com/panchalamitr/NewsApp/blob/main/screenshot/Banner.jpg)
+![News App Screenshot](https://github.com/panchalamitr/SG_Live_Traffic_Demo/blob/main/screenshots/screens.jpg)
 
 -------------------------
 
 **Description**
 
-1) Login Screen (Google, Facebook Login) 
-I have done login operation in SocialLoginActivity 
+1) Map Screen
+Fetch data from the https://data.gov.sg/ and shows camera location on Singapore Map
+This api is being called every minute to get updated image.
 
-2) NewsHeadLinesActivity
-I have fetch data from the (The Guardian Open Platform) API and displayed those records. 
-I have followed MVVM Architecture in this screen 
-I have created NewsHeadLinesActivityas UI, NewsHeadLinesViewModel as ViewModel and NewsHeadLinesRepository as Repository
-
-3) DetailNewsActivity
-Here I just need to display 5 to 10 lines of detail description, but I could not found detail description so I have load that webpage using Webview.
 
