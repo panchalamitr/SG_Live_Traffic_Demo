@@ -1,6 +1,6 @@
 # Singapore Live Traffic Demo
 
-I have made News App using MVVM architecture.
+This app follows MVVM architecture.
 
 Implemented Unit Test Cases For ViewModel
 
