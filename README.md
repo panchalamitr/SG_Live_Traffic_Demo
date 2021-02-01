@@ -31,7 +31,8 @@ I have used following tools
 **Description**
 
 1) Map Screen
-Fetch data from the https://data.gov.sg/ and shows camera location on Singapore Map
-This api is being called every minute to get updated image.
+Fetch data from the https://data.gov.sg/ and shows camera location on Singapore Map. </br>
+This api is being called every minute to get updated image. </br>
+Instead of removing and adding marker every minute, I have just updated it's camera Uri (which is updating every minute)
 
 
