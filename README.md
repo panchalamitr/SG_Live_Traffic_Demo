@@ -2,7 +2,7 @@
 
 I have made News App using MVVM architecture.
 
-Implemented Test Cases 
+Implemented Unit Test Cases For ViewModel
 
 
 -------------------------
@@ -14,7 +14,9 @@ I have used following tools
  - DaggerHilt 💉 ( Dependancy Injection)
  - Retrofit 📲 (Network Call)
  - LoggingInterceptor ⏺︎ (Api Logs)
-
+ - NetworkResponseAdapter (Handle Network Response)
+ - Truth (performing assertions in tests)
+ - MockK (Mocking objects)
 -------------------------
 **Video Link**
 [![Everything Is AWESOME](https://github.com/panchalamitr/SG_Live_Traffic_Demo/blob/main/screenshots/YoutubeScreen.png)](https://youtu.be/au13nsR-yiQ "Everything Is AWESOME")
