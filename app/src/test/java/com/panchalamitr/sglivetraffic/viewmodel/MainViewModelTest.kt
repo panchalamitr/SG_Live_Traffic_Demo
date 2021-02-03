@@ -66,7 +66,7 @@ class MainViewModelTest  {
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeTrafficCameras().getOrAwaitValueTest()
-            assertThat(result.isNotEmpty())
+            assertThat(result is TrafficData).isTrue()
         }
     }
 
@@ -78,7 +78,7 @@ class MainViewModelTest  {
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()
-            assertThat(result.contains("error"))
+            assertThat(result is ErrorTrafficImages).isTrue()
         }
     }
 
@@ -90,7 +90,7 @@ class MainViewModelTest  {
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()
-            assertThat(result.contains("error"))
+            assertThat(result is NetworkResponse.NetworkError).isTrue()
         }
     }
 
@@ -102,7 +102,7 @@ class MainViewModelTest  {
             mainViewModel = MainViewModel(trafficImagesRepository, savedStateHandle)
             mainViewModel.fetchTrafficData()
             val result = mainViewModel.observeErrorResponse().getOrAwaitValueTest()
-            assertThat(result.contains("error"))
+            assertThat(result is NetworkResponse.UnknownError).isTrue()
         }
     }
 

@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import com.haroldadmin.cnradapter.NetworkResponse
 import com.panchalamitr.sglivetraffic.R
 import com.panchalamitr.sglivetraffic.adapter.CustomInfoWindowAdapter
 import com.panchalamitr.sglivetraffic.common.Constants
@@ -66,9 +67,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun observeTrafficCameras(googleMap: GoogleMap) {
-        mainViewModel.observeTrafficCameras().observe(this, Observer { value ->
+        mainViewModel.observeTrafficCameras().observe(this, Observer { it ->
             showSyncStarMessage()
-            value.forEach {
+            it.items[0].cameras.forEach {
                 val lat = it.location.latitude
                 val lng = it.location.longitude
                 var marker: Marker
@@ -87,7 +88,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun observeErrorResponse() {
         mainViewModel.observeErrorResponse().observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            when(it){
+                is NetworkResponse.ServerError<*> -> {
+                    Toast.makeText(this, it.body.toString(), Toast.LENGTH_LONG).show()
+                }
+
+                /** When no internet connection **/
+                is NetworkResponse.NetworkError -> {
+                    Toast.makeText(this,it.error.message, Toast.LENGTH_LONG).show()
+                }
+
+                /** When no internet connection **/
+                is NetworkResponse.UnknownError -> {
+                    Toast.makeText(this,it.error.message, Toast.LENGTH_LONG).show()
+                }
+            }
         })
     }
 

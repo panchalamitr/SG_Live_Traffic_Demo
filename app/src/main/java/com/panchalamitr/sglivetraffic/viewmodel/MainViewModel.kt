@@ -4,8 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.haroldadmin.cnradapter.NetworkResponse
-import com.panchalamitr.sglivetraffic.model.Camera
-import com.panchalamitr.sglivetraffic.respository.DefaultTrafficImagesRepository
+import com.panchalamitr.sglivetraffic.model.TrafficData
 import com.panchalamitr.sglivetraffic.respository.TrafficImageRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -17,8 +16,8 @@ class MainViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     private var syncTimer: Timer? = null
-    private val trafficCameras = MutableLiveData<List<Camera>>()
-    private val errorResponse = MutableLiveData<String>()
+    private val trafficCameras = MutableLiveData<TrafficData>()
+    private val errorResponse = MutableLiveData<Any>()
     private val repeatTime = 1 * 60 * 1000L //every 1 min
 
     fun syncStart() {
@@ -52,39 +51,40 @@ class MainViewModel @ViewModelInject constructor(
                 is NetworkResponse.Success -> {
                     result?.let {
                         if (it.body.apiInfo.status == "healthy") {
-                            trafficCameras.postValue(it.body?.items[0]?.cameras)
+                            //.body?.items[0]?.cameras
+                            trafficCameras.postValue(it.body)
                         }
                     }
                 }
 
                 is NetworkResponse.ServerError -> {
                     result?.let {
-                        errorResponse.postValue(it.body?.message)
+                        errorResponse.postValue(it.body)
                     }
                 }
 
                 /** When no internet connection **/
                 is NetworkResponse.NetworkError -> {
                     result?.let {
-                        errorResponse.postValue(it.error.message)
+                        errorResponse.postValue(it)
                     }
                 }
 
                 /** When no internet connection **/
                 is NetworkResponse.UnknownError -> {
                     result?.let {
-                        errorResponse.postValue(it.error.message)
+                        errorResponse.postValue(it)
                     }
                 }
             }
         }
     }
 
-    fun observeTrafficCameras(): LiveData<List<Camera>> {
+    fun observeTrafficCameras(): LiveData<TrafficData> {
         return trafficCameras
     }
 
-    fun observeErrorResponse(): LiveData<String> {
+    fun observeErrorResponse(): LiveData<Any> {
         return errorResponse
     }
 
