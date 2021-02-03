@@ -8,10 +8,8 @@ import com.google.gson.annotations.SerializedName;
 public class TrafficData {
 
     @SerializedName("items")
-    @Expose
     private List<Item> items = null;
     @SerializedName("api_info")
-    @Expose
     private ApiInfo apiInfo;
 
     public List<Item> getItems() {

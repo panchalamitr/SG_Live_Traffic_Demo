@@ -8,10 +8,8 @@ import com.google.gson.annotations.SerializedName;
 public class Item {
 
     @SerializedName("timestamp")
-    @Expose
     private String timestamp;
     @SerializedName("cameras")
-    @Expose
     private List<Camera> cameras = null;
 
     public String getTimestamp() {

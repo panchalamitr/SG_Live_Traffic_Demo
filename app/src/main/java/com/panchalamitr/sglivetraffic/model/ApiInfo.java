@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 public class ApiInfo {
 
     @SerializedName("status")
-    @Expose
     private String status;
 
     public String getStatus() {

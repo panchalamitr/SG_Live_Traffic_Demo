@@ -7,19 +7,14 @@ import com.google.gson.annotations.SerializedName;
 public class Camera {
 
     @SerializedName("timestamp")
-    @Expose
     private String timestamp;
     @SerializedName("image")
-    @Expose
     private String image;
     @SerializedName("location")
-    @Expose
     private Location location;
     @SerializedName("camera_id")
-    @Expose
     private String cameraId;
     @SerializedName("image_metadata")
-    @Expose
     private ImageMetadata imageMetadata;
 
     public String getTimestamp() {

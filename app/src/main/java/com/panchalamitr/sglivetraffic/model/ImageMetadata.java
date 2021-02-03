@@ -7,13 +7,10 @@ import com.google.gson.annotations.SerializedName;
 public class ImageMetadata {
 
     @SerializedName("height")
-    @Expose
     private Integer height;
     @SerializedName("width")
-    @Expose
     private Integer width;
     @SerializedName("md5")
-    @Expose
     private String md5;
 
     public Integer getHeight() {
